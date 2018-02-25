@@ -9,7 +9,7 @@ const defaultOGImage = '';
 const Head = props => (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{props.title || ''}</title>
+    <title>{props.title || 'Simple Next Boilerplate'}</title>
     <meta name="description" content={props.description || defaultDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {/* <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />

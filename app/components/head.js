@@ -1,5 +1,6 @@
-import NextHead from 'next/head'
-import { string } from 'prop-types'
+import NextHead from 'next/head';
+import { string } from 'prop-types';
+import globalStyle from 'styles/styles.scss';
 
 const defaultDescription = ''
 const defaultOGURL = ''
@@ -25,6 +26,7 @@ const Head = (props) => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <style dangerouslySetInnerHTML={{ __html: globalStyle }} />
   </NextHead>
 )
 

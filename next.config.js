@@ -1,14 +1,15 @@
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const glob = require('glob');
 
 module.exports = {
   webpack: (config, {dev}) => {
+    const oldEntry = config.entry
     // Fixes npm packages that depend on `fs` module
     config.node = {
       fs: 'empty'
     };
-    const oldEntry = config.entry
 
 		config.entry = () =>
 			oldEntry().then(entry => {
@@ -19,6 +20,35 @@ module.exports = {
     config.resolve = {
       modules: ['node_modules', './']
     };
+
+    config.module.rules = [
+      ...config.module.rules,
+      {
+        test: /\.(css|scss)/,
+        loader: 'emit-file-loader',
+        options: {
+          name: 'dist/[path][name].[ext]'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['babel-loader', 'raw-loader', 'postcss-loader']
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        use: ['babel-loader', 'raw-loader', 'postcss-loader',
+          { loader: 'sass-loader',
+            options: {
+              includePaths: ['styles', 'node_modules']
+                .map((d) => path.join(__dirname, d))
+                .map((g) => glob.sync(g))
+                .reduce((a, c) => a.concat(c), [])
+            }
+          }
+        ]
+      }
+    ]
+
     /* Enable only in Production */
 		if (!dev) {
       config.plugins = [...config.plugins, 

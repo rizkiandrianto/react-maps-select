@@ -48,6 +48,19 @@ module.exports = {
         ]
       }
     ]
+    // Enable Only in Development
+    if (dev) {
+      config.module.rules.push({
+        test: /\.js$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: dev,
+          //configFile: path.resolve('./.eslintrc.js')
+        }
+      });
+    }
 
     /* Enable only in Production */
 		if (!dev) {

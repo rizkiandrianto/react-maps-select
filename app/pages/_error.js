@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode }
+    const statusCode = () => {
+      if (res) {
+        return res.statusCode;
+      } else if (err) {
+        return err.statusCode;
+      }
+      return null;
+    };
+    return { statusCode: statusCode() };
   }
 
   render() {
@@ -13,6 +20,6 @@ export default class Error extends React.Component {
           ? `An error ${this.props.statusCode} occurred on server`
           : 'An error occurred on client'}
       </p>
-    )
+    );
   }
 }

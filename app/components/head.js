@@ -2,11 +2,11 @@ import NextHead from 'next/head';
 import { string } from 'prop-types';
 import globalStyle from 'styles/styles.scss';
 
-const defaultDescription = ''
-const defaultOGURL = ''
-const defaultOGImage = ''
+const defaultDescription = '';
+const defaultOGURL = '';
+const defaultOGImage = '';
 
-const Head = (props) => (
+const Head = props => (
   <NextHead>
     <meta charSet="UTF-8" />
     <title>{props.title || ''}</title>
@@ -28,13 +28,13 @@ const Head = (props) => (
     <meta property="og:image:height" content="630" />
     <style dangerouslySetInnerHTML={{ __html: globalStyle }} />
   </NextHead>
-)
+);
 
 Head.propTypes = {
   title: string,
   description: string,
   url: string,
   ogImage: string
-}
+};
 
-export default Head
+export default Head;

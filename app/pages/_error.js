@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -23,3 +24,11 @@ export default class Error extends React.Component {
     );
   }
 }
+
+Error.propTypes = {
+  statusCode: PropTypes.number
+};
+
+Error.defaultProps = {
+  statusCode: 0
+};

@@ -2,7 +2,7 @@ const routes = module.exports = require('next-routes')()
 
 routes
 .add({
-    name: 'about',
+    name: 'contoh',
     page: 'contoh'
 })
 .add('index', '/')

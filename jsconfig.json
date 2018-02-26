@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./app",
+        "paths": {
+            "*": [
+              "*",
+              "components/*",
+              "helpers/*",
+              "pages/*",
+              "redux/*",
+              "static/*",
+              "styles/*",
+              "utils/*"
+            ]
+          }
+    }
+}

@@ -1,8 +1,8 @@
-const routes = module.exports = require('next-routes')()
+const routes = require('next-routes')();
 
-routes
+module.exports = routes
 .add({
     name: 'contoh',
     page: 'contoh'
 })
-.add('index', '/')
+.add('index', '/');

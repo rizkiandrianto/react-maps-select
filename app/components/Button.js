@@ -1,36 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setCount } from 'redux/actions/MainAction';
 
 class Button extends Component {
-    constructor() {
-        super();
-        this.addCount = this.addCount.bind(this);
-    }
-    addCount() {
-        this.props.setCount();
-    }
-    render() {
-        return <button onClick={this.addCount}>Add Count {this.props.count}</button>;
-    }
+	constructor() {
+		super();
+		this.clickHandler = this.clickHandler.bind(this);
+	}
+
+	clickHandler() {
+		const { onClick } = this.props;
+		if (onClick) onClick();
+	}
+
+	render() {
+		const { text } = this.props;
+		return (
+			<button type="button" onClick={this.clickHandler}>
+				{text}
+			</button>
+		);
+	}
 }
 
 Button.propTypes = {
-    setCount: PropTypes.func.isRequired,
-    count: PropTypes.number
+	onClick: PropTypes.func,
+	text: PropTypes.string
 };
 
 Button.defaultProps = {
-    count: 0
+	onClick: null,
+	text: 'Button'
 };
 
-export default connect(
-state => ({
-    count: state.MainReducer.count
-}),
-dispatchEvent => bindActionCreators({
-    setCount
-}, dispatchEvent)
-)(Button);
+export default Button;

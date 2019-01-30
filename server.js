@@ -1,18 +1,24 @@
 // server.js
-const next = require('next')
+const next = require('next');
 const path = require('path');
-const routes = require('./app/routes')
-const { parse } = require('url')
-const app = next({
-    dev: process.env.NODE_ENV !== 'production',
-    dir: './app',
-    useFileSystemPublicRoutes: false
-})
-const handler = routes.getRequestHandler(app)
+// const { parse } = require('url');
+
+
 const PORT = process.env.PORT || 3000;
- 
+
 // Without express
-const {createServer} = require('http')
+const { createServer } = require('http');
+
+const routes = require('./app/routes');
+
+const app = next({
+	dev: process.env.NODE_ENV !== 'production',
+	dir: './app',
+	useFileSystemPublicRoutes: false
+});
+
+const handler = routes.getRequestHandler(app)
+
 app.prepare().then(() => {
   // createServer((req, res) => {
   //   const parsedUrl = parse(req.url, true)
@@ -34,9 +40,9 @@ app.prepare().then(() => {
 		}
 	});
 
-	server.listen(PORT, err => {
+	server.listen(PORT, (err) => {
 		if (err) throw err;
 
-		console.log(`> App running on port ${PORT}`);
+		console.log(`> App running on port ${PORT}`); // eslint-disable-line
 	});
-})
+});

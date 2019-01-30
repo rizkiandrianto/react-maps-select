@@ -6,4 +6,5 @@ import promise from 'redux-promise-middleware';
 
 const middlewares = [promise(), thunk];
 if (process.env.NODE_ENV !== 'production') middlewares.push(createLogger());
-export default () => createStore(reducer, {}, applyMiddleware(...middlewares));
+
+export default initialState => createStore(reducer, initialState, applyMiddleware(...middlewares));

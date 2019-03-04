@@ -157,10 +157,12 @@ export default class Maps extends Component {
     });
   }
 
-  changeSearch(e, value) {
-    this.setState({
-      searchValue: value
-    });
+  changeSearch(e) {
+    if (e && e.target) {
+      this.setState({
+        searchValue: e.target.value
+      });
+    }
   }
 
   render() {

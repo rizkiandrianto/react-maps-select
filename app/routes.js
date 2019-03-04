@@ -5,4 +5,4 @@ module.exports = routes
     name: 'contoh',
     page: 'contoh'
 })
-.add('index', '/');
+.add('home', '/');
